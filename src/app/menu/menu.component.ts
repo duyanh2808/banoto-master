@@ -9,14 +9,15 @@ import { BaseComponent } from '../lib/base-component';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent extends BaseComponent implements OnInit {
+  menus:any;
   constructor(private _api: ApiService) { 
     super();
   }
   ngOnInit(): void {
-    this._api.get('/api/weatherforecast').takeUntil(this.unsubscribe).subscribe(res => {
-      let xx = res;
+    this._api.get('/api/itemgroup/get-menu').takeUntil(this.unsubscribe).subscribe(res => {
+      this.menus = res;
       debugger;
-      console.log(xx);
+      console.log(this.menus);
     }); 
   }
 
